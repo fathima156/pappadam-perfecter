@@ -1,42 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Pappadam Planet Design System - Cute, vibrant, Pinterest-inspired */
 
 @layer base {
   :root {
+    /* Base colors - pristine white background with golden pappadam tones */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 8%;
 
+    /* Pappadam golden palette */
+    --pappadam-golden: 45 95% 70%;
+    --pappadam-golden-light: 48 100% 85%;
+    --pappadam-golden-dark: 40 85% 55%;
+    --pappadam-crispy: 35 90% 60%;
+    
+    /* Cute aesthetic blacks for drawings */
+    --cute-black: 0 0% 15%;
+    --drawing-black: 0 0% 8%;
+    
+    /* Card and interface elements */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 8%;
+    --card-shadow: 45 50% 85%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary golden theme */
+    --primary: 45 95% 70%;
+    --primary-foreground: 0 0% 15%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Soft secondary for accents */
+    --secondary: 48 100% 95%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted tones */
+    --muted: 45 30% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent golden */
+    --accent: 48 100% 90%;
+    --accent-foreground: 0 0% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 40% 90%;
+    --input: 45 40% 95%;
+    --ring: 45 95% 70%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +117,107 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-handwritten overflow-x-hidden;
+  }
+
+  /* Cute handwritten font */
+  .font-handwritten {
+    font-family: 'Kalam', cursive;
+  }
+
+  /* Pappadam scattered pieces animation */
+  .pappadam-piece {
+    position: absolute;
+    transform: rotate(var(--rotation));
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(var(--rotation)); }
+    50% { transform: translateY(-10px) rotate(calc(var(--rotation) + 5deg)); }
+  }
+
+  /* Pappadam character animations */
+  .pappadam-character {
+    animation: characterLoop 8s infinite;
+    transform-origin: center;
+  }
+
+  @keyframes characterLoop {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.05) rotate(-2deg); }
+    40% { transform: scale(1) rotate(2deg); }
+    60% { transform: scale(1.1) rotate(0deg); }
+    80% { transform: scale(1.05) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  .running-animation {
+    animation: running 1s infinite;
+  }
+
+  @keyframes running {
+    0%, 100% { transform: translateX(0px); }
+    50% { transform: translateX(5px); }
+  }
+
+  .flexing-animation {
+    animation: flexing 2s infinite;
+  }
+
+  @keyframes flexing {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.1); }
+  }
+
+  .smirking-animation {
+    animation: smirking 3s infinite;
+  }
+
+  @keyframes smirking {
+    0%, 80%, 100% { transform: rotate(0deg); }
+    10%, 70% { transform: rotate(3deg); }
+  }
+
+  /* Break apart animation */
+  .piece-slide-left {
+    animation: slideLeft 0.8s ease-out forwards;
+  }
+
+  .piece-slide-right {
+    animation: slideRight 0.8s ease-out forwards;
+  }
+
+  @keyframes slideLeft {
+    to { transform: translateX(-150px) rotate(-20deg); opacity: 0.8; }
+  }
+
+  @keyframes slideRight {
+    to { transform: translateX(150px) rotate(20deg); opacity: 0.8; }
+  }
+
+  /* Cute bounce hover effects */
+  .bounce-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bounce-hover:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+
+  /* Golden glow effect */
+  .golden-glow {
+    box-shadow: 0 0 20px hsl(var(--pappadam-golden) / 0.3);
+  }
+
+  /* Cute loading animation */
+  .cute-loading {
+    animation: cutePulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes cutePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
   }
 }

@@ -18,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				handwritten: ['Kalam', 'cursive'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +64,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Pappadam Planet colors
+				pappadam: {
+					golden: 'hsl(var(--pappadam-golden))',
+					'golden-light': 'hsl(var(--pappadam-golden-light))',
+					'golden-dark': 'hsl(var(--pappadam-golden-dark))',
+					crispy: 'hsl(var(--pappadam-crispy))',
+				},
+				cute: {
+					black: 'hsl(var(--cute-black))',
+					drawing: 'hsl(var(--drawing-black))',
 				}
 			},
 			borderRadius: {
