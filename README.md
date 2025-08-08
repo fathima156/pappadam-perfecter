@@ -1,73 +1,72 @@
-# Welcome to your Lovable project
 
-## Project info
+<img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
-**URL**: https://lovable.dev/projects/c2c462de-2d26-4341-bb7c-8a33977d77b6
 
-## How can I edit this code?
+# Pappadam Perfector  🎯
 
-There are several ways of editing your application.
 
-**Use Lovable**
+## Basic Details
+### Team Name: pappadam perfecters
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c2c462de-2d26-4341-bb7c-8a33977d77b6) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
+### Team Members
+- Team Lead: Fathima Afrah - KAHM Unity Women's College Manjeri
+- Member 2: Fathimath Najiya  - KAHM Unity Women's College Manjeri
 
-**Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Project Description
+Our project lets the user to get a  puffy and  crunchy pappadam when an image  of broken pappadam is uploaded,it has other menus where user can get a full pappadam if they upload image of a pappadam where a piece of it is missing , rating the crunch of the pappadam and also to generate a pappadam according to user needs .
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### The Problem (that doesn't exist)
+The emotional damage or instability caused in certain people due to the absence of pappadam with their lunch or when they get a pappadam where a part of it is missing and when they get heart broken pappadam , it break some people's heart :(.
 
-Follow these steps:
+### The Solution (that nobody asked for)
+Our website is like a therapist for the pappadam lovers , it generates a pappadam for them whenever they need it , we have provided menus to fix a broken pappadam and to generate the missing part of it , if lost (they deserve to be considered )
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Technical Details
+### Technologies/Components Used
+For Software:
+- Typescript , CSS , Node.js , JSON.
+- Next.js,Node.js,react,css tailwind
+- react, next
+- lovable ai
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Project Documentation
+For Software:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+# Screenshots (Add at least 3)
+https://drive.google.com/file/d/1REc4gCUJNmMcgCpryATv0qvVybNt3vlV/view?usp=drive_link
+https://drive.google.com/file/d/1mymhxeF_gxkYTMOAdiTvqUgn8qrES7p1/view?usp=drive_link
+https://drive.google.com/file/d/1IpsyBwxONpGzF2iF0BM3KJzZhilnPg6U/view?usp=drive_link
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
 
-This project is built with:
+### Project Demo
+# Video
+https://drive.google.com/file/d/1Tx6tSowY95FYJH-lKbbbpAFlTrEnRGgq/view?usp=drive_link
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Team Contributions
+- Fathima afra : Built the main application structure using React, Next.js, and Tailwind CSS.
+Integrated UI components such as OpeningModal, InteractiveMenuCard, and ProcessingCard.
+Managed state with React hooks (useState) for modal handling, file uploads, and processing status.
+Implemented simulated API processing logic and toast notifications using sonner.
+- Fathimath Najiya : Designed and implemented animated & visual components (PappadamCharacter, ScatteredPieces).
+Developed the FileUpload and CustomGeneratorForm logic for user inputs.
+Created results display grid and responsive layout for multiple processing outcomes.
+Worked on styling consistency, responsive design, and UX enhancements for dialogs and interactive elements.
+Prepared visual documentation (screenshots, demo video).
 
-## How can I deploy this project?
+Handled deployment setup on Vercel.
+- [Name 2]: [Specific contributions]
+- [Name 3]: [Specific contributions]
 
-Simply open [Lovable](https://lovable.dev/projects/c2c462de-2d26-4341-bb7c-8a33977d77b6) and click on Share -> Publish.
+---
+Made with ❤️ at TinkerHub Useless Projects 
 
-## Can I connect a custom domain to my Lovable project?
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
+![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
