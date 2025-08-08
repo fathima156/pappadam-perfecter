@@ -6,10 +6,8 @@ import { InteractiveMenuCard } from '@/components/InteractiveMenuCard';
 import { FileUpload } from '@/components/FileUpload';
 import { ProcessingCard, ProcessingStatus } from '@/components/ProcessingCard';
 import { CustomGeneratorForm, GenerationParams } from '@/components/CustomGeneratorForm';
-import { GeminiApiKeyForm } from '@/components/GeminiApiKeyForm';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
-import { reconstructPappadamImage } from '@/services/geminiService';
 import pappadamWhole from '@/assets/pappadam-whole.png';
 
 const Index = () => {
@@ -19,7 +17,6 @@ const Index = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [processingStatus, setProcessingStatus] = useState<ProcessingStatus>('idle');
   const [results, setResults] = useState<any>({});
-  const [geminiApiKey, setGeminiApiKey] = useState<string>('');
 
   // Simulate API processing
   const simulateProcessing = async (duration: number = 3000) => {
@@ -30,58 +27,14 @@ const Index = () => {
     setProcessingStatus('complete');
   };
 
-  // Real image reconstruction using Gemini API
-  const handleImageReconstruction = async () => {
-    if (!imageFile) {
-      toast.error('Please upload an image first! 📸');
-      return;
-    }
-
-    if (!geminiApiKey) {
-      toast.error('Please set your Gemini API key first! 🔑');
-      return;
-    }
-
-    try {
-      setProcessingStatus('analyzing');
-      toast.success('Starting AI reconstruction... 🤖');
-      
-      const reconstructedImageUrl = await reconstructPappadamImage(imageFile, geminiApiKey);
-      
-      setProcessingStatus('complete');
-      setResults(prev => ({
-        ...prev,
-        upload: {
-          imageUrl: reconstructedImageUrl,
-          analysis: {
-            status: 'Successfully Reconstructed',
-            model: 'Gemini 2.5 Flash',
-            quality: 'AI Generated',
-            technique: 'Image-to-Image'
-          }
-        }
-      }));
-      toast.success('Pappadam reconstruction completed! ✨');
-    } catch (error: any) {
-      setProcessingStatus('error');
-      console.error('Reconstruction error:', error);
-      toast.error(`Failed to reconstruct: ${error.message}`);
-    }
-  };
 
   const handleFileProcess = async (type: 'upload' | 'missing' | 'crunch') => {
-    // For upload, use the real AI reconstruction
-    if (type === 'upload') {
-      await handleImageReconstruction();
-      return;
-    }
-
-    // For other types, use simulated processing
+    // Use simulated processing for all types
     if (type === 'crunch' && !audioFile) {
       toast.error('Please upload an audio file first! 🎵');
       return;
     }
-    if (type === 'missing' && !imageFile) {
+    if ((type === 'missing' || type === 'upload') && !imageFile) {
       toast.error('Please upload an image first! 📸');
       return;
     }
@@ -116,7 +69,7 @@ const Index = () => {
             }
           }
         }));
-        toast.success(`${type === 'missing' ? 'Completion' : 'Processing'} successful! ✨`);
+        toast.success(`${type === 'missing' ? 'Completion' : type === 'upload' ? 'Reconstruction' : 'Processing'} successful! ✨`);
       }
     } catch (error) {
       setProcessingStatus('error');
@@ -177,8 +130,8 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <InteractiveMenuCard
             type="upload"
-            title="AI Pappadam Reconstruction! 🤖"
-            description="Upload your broken pappadam and watch AI magic happen!"
+            title="Pappadam Reconstruction! ✨"
+            description="Upload your broken pappadam and watch magic happen!"
             onClick={() => setCurrentUploadModal('upload')}
           />
           
@@ -244,7 +197,7 @@ const Index = () => {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-handwritten text-2xl text-pappadam-golden-dark">
-              {currentUploadModal === 'upload' && "🤖 AI Pappadam Reconstruction!"}
+              {currentUploadModal === 'upload' && "✨ Pappadam Reconstruction!"}
               {currentUploadModal === 'missing' && "🔍 Complete Missing Pieces!"}
               {currentUploadModal === 'crunch' && "🔊 Crunch Analysis!"}
               {currentUploadModal === 'generate' && "🎨 Dream Pappadam Generator!"}
@@ -260,11 +213,6 @@ const Index = () => {
                 />
               ) : (
                 <div className="space-y-6">
-                  {/* API Key Form for Upload (AI Reconstruction) */}
-                  {currentUploadModal === 'upload' && !geminiApiKey && (
-                    <GeminiApiKeyForm onApiKeySet={setGeminiApiKey} />
-                  )}
-
                   <FileUpload
                     onFileSelect={currentUploadModal === 'crunch' ? setAudioFile : setImageFile}
                     accept={currentUploadModal === 'crunch' ? 'audio/mp3,audio/wav,audio/mpeg' : 'image/png,image/jpeg,image/jpg'}
@@ -274,14 +222,11 @@ const Index = () => {
                   
                   <button
                     onClick={() => handleFileProcess(currentUploadModal as 'upload' | 'missing' | 'crunch')}
-                    disabled={
-                      processingStatus === 'processing' || 
-                      (currentUploadModal === 'upload' && !geminiApiKey)
-                    }
+                    disabled={processingStatus === 'processing'}
                     className="w-full bg-pappadam-golden hover:bg-pappadam-golden-dark text-cute-black font-handwritten font-bold text-lg py-3 rounded-full golden-glow transition-all duration-300 disabled:opacity-50"
                   >
                     {processingStatus === 'processing' ? 'Creating Magic... ✨' : 
-                     currentUploadModal === 'upload' ? 'Reconstruct with AI! 🤖' : 
+                     currentUploadModal === 'upload' ? 'Reconstruct Pappadam! ✨' : 
                      'Process My Pappadam! 🚀'}
                   </button>
                 </div>
@@ -289,7 +234,7 @@ const Index = () => {
             </div>
             
             <ProcessingCard
-              title={currentUploadModal === 'upload' ? 'AI Reconstruction' : 
+              title={currentUploadModal === 'upload' ? 'Reconstruction' : 
                      currentUploadModal === 'generate' ? 'Generation' : 'Processing'}
               status={processingStatus}
               result={results[currentUploadModal || '']}
